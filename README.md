@@ -10,5 +10,5 @@ Basic example implements strips of equal surface (originally designed to equally
 values are increasing double between 0 and 1 and represent the proportion of the width of the disc, 
 colors is determined by looping over the color List.
 
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/atcnaked/disc_strip_surface_division/blob/99afd677569cd4b9f78e2a818826d7e49f98cfd7/README01c.png)
 
