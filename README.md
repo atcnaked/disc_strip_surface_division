@@ -3,9 +3,8 @@
 
 
 Paint a disc with vertical colored strips starting at some values.  
-The disc can be rotated.
-Strip color can be costumized. 
 Basic example implements strips of equal surface (originally designed to equally split a pizza in strips)
+The disc can be rotated, strip color can be costumized. 
 
 values are increasing double between 0 and 1 and represent the proportion of the width of the disc, 
 colors is determined by looping over the color List.
