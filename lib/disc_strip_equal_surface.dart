@@ -43,7 +43,6 @@ class DiscStrips extends CustomPainter {
         minDimension = minDimensionParam ?? 50;
   @override
   void paint(Canvas canvas, Size size) {
-    //  canvas.clipRect(Rect.fromLTWH(0, 0,size. width, size.height));
     var center = size / 2;
 
     // the size of the Rect where we will draw later on
@@ -56,6 +55,7 @@ class DiscStrips extends CustomPainter {
     final squareRect = Rect.fromLTWH(SquareTLCorner.dx, SquareTLCorner.dy,
         freeSquareSideLength, freeSquareSideLength);
 
+    // nothing will be drawn outside of squareRect
     canvas.clipRect(squareRect);
 
     // this Path shows the border of the canvas
