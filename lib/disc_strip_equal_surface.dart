@@ -9,7 +9,7 @@ import 'equaldiscstrips3.dart';
 ///
 /// xSplits are increasing double between 0 and 1 and represent the proportion of the width of the disc
 /// Colors is determined by looping over the _colors List (which has a default value).
-/// shouldRepaint has been optimized
+/// shouldRepaint has been optimized  
 /// TODO: implement minimum size
 /// minimum size was implemented but the center of rotation is no longer the disc center
 class DiscStrips extends CustomPainter {
