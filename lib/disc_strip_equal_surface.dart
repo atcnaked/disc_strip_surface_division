@@ -44,6 +44,8 @@ class DiscStrips extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     var center = size / 2;
+    
+    
 
     // this Path shows the border of the canvas
     if (showHelpGraphics) {
@@ -152,6 +154,13 @@ class DiscStrips extends CustomPainter {
             ..style = PaintingStyle.stroke);
     }
     canvas.restore();
+    canvas.clipRect(Rect.fromCenter(
+                center:
+                    Offset(freeSquareSideLength / 2, freeSquareSideLength / 2),
+                //   center: Offset(center.width, center.height),
+                width: freeSquareSideLength,
+                height: freeSquareSideLength));
+
 
     print('DiscStrip02CustomPainter repainted !');
   }
