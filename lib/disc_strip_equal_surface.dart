@@ -45,7 +45,7 @@ class DiscStrips extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var center = size / 2;
     
-    
+
 
     // this Path shows the border of the canvas
     if (showHelpGraphics) {
@@ -270,6 +270,7 @@ double cosEquivFrom(double x0FromLeft) {
   return 2 * x0FromLeft - 1;
 }
 
+/// extract xValues and convert values between -1,1 into values between 0,1
 List<double> getProportionnalXWithOneFrom(List<DiscSliceResultPart> parts) {
   // final List<DiscSliceResultPart> parts = getDiscSliceResultOf(_counter);
   //  print('_counter: $_counter');

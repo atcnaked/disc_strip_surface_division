@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _setSplitsNoSetState() {
     final List<DiscSliceResultPart> parts = getDiscSliceResultOf(_counter);
-
+    /// conversion
     xSplits = getProportionnalXWithOneFrom(parts);
   }
 

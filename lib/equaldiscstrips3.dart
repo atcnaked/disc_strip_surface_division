@@ -36,8 +36,10 @@ void main(List<String> arguments) {
   }
 }
 
-/// In a disc, the x value with corresponding angle of the nth vertical divisions from left to right.
+/// In a disc, the x value with corresponding angle of the nth vertical divisions.
 ///
+/// result given with x from left(-1) to right (+1).
+/// n is the only parameter, precision = 10000 is fixed.
 /// n and precision is repeated inside each element.
 /// It deals with divisions of same surface, calculation is made by an approximation
 List<DiscSliceResultPart> getDiscSliceResultOf(int n) {
