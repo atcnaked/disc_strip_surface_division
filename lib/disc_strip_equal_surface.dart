@@ -1,8 +1,5 @@
-import 'dart:math';
 import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
-
 import 'equaldiscstrips3.dart';
 
 /// paints a disc with vertical colored strips starting at xSplits proportion.  angle is experimental.
