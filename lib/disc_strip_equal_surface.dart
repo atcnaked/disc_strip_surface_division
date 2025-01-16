@@ -45,6 +45,19 @@ class DiscStrips extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var center = size / 2;
 
+    // the size of the Rect where we will draw later on
+    // we need this numbers here in order to do a canvas.clipRect
+    final double freeSquareSideLength =
+        size.width < size.height ? size.width : size.height;
+    final Offset SquareTLCorner = size.width < size.height
+        ? Offset(0, (size.height - size.width) / 2)
+        : Offset((size.width - size.height) / 2, 0);
+    final squareRect = Rect.fromLTWH(SquareTLCorner.dx, SquareTLCorner.dy,
+        freeSquareSideLength, freeSquareSideLength);
+
+    // nothing will be drawn outside of squareRect
+    canvas.clipRect(squareRect);
+
     // this Path shows the border of the canvas
     if (showHelpGraphics) {
       canvas.drawPath(
@@ -57,20 +70,20 @@ class DiscStrips extends CustomPainter {
             ..color = Colors.black
             ..style = PaintingStyle.stroke);
     }
+    if (showHelpGraphics) {
+      canvas.drawPath(
+          Path()..addRect(squareRect),
+          Paint()
+            ..color = Colors.black
+            ..style = PaintingStyle.stroke);
+    }
 
     canvas.save();
     canvas.translate(center.width, center.height);
     canvas.rotate(angle);
     canvas.translate(-center.width, -center.height);
 
-    // the size of the Rect where we draw
-    final double freeSquareSideLength =
-        size.width < size.height ? size.width : size.height;
-    final Offset SquareTLCorner = size.width < size.height
-        ? Offset(0, (size.height - size.width) / 2)
-        : Offset((size.width - size.height) / 2, 0);
     // we can draw from TL or from the center
-
     canvas.translate(SquareTLCorner.dx, SquareTLCorner.dy);
 
     /// shows the TL corner of the enclosing square
@@ -87,25 +100,24 @@ class DiscStrips extends CustomPainter {
     final double minSize = minDimension;
     final double dim =
         freeSquareSideLength < minSize ? minSize : freeSquareSideLength;
-    // print(        'minSize: $minSize, freeSquareSideLengthFloored: $freeSquareSideLength');
 
     int colorIndex = _colors.length - 1;
     double left = -1;
-    double leftSquare = -1;
+    double leftInSquare = -1;
     double right = 0;
-    double rightSquare = 0;
+    double rightInSquare = 0;
     var paint = Paint();
     bool parity = true;
     for (var xCoord in xSplits) {
       left = right;
       right = xCoord * dim;
-      leftSquare = rightSquare;
-      rightSquare = xCoord * freeSquareSideLength;
+      leftInSquare = rightInSquare;
+      rightInSquare = xCoord * freeSquareSideLength;
 //
       colorIndex = colorIndex == _colors.length - 1 ? 0 : colorIndex + 1;
       final Color color = _colors[colorIndex];
-      paintStripInSquare(
-          canvas, paint, leftSquare, rightSquare, color, freeSquareSideLength);
+      paintStripInSquare(canvas, paint, leftInSquare, rightInSquare, color,
+          freeSquareSideLength);
     }
     for (var xCoord in xSplits) {
       left = right;
@@ -113,7 +125,7 @@ class DiscStrips extends CustomPainter {
       colorIndex = colorIndex == _colors.length - 1 ? 0 : colorIndex + 1;
 
       final Color color = _colors[colorIndex];
-      if (showNumbers && freeSquareSideLength>150) {
+      if (showNumbers && freeSquareSideLength > 150) {
         paintTextInSquare(canvas, paint, left, right, xCoord, color,
             freeSquareSideLength, parity);
       }
@@ -123,11 +135,7 @@ class DiscStrips extends CustomPainter {
       parity = !parity;
     }
 
-    //  canvas.translate(-SquareTLCorner.dx, -SquareTLCorner.dy);
     if (showHelpGraphics) {
-      // Offset(0, squareDim / 2),
-      //   Offset(squareDim/ 2, squareDim / 2),
-
       // this Path shows the center of the canvas which will be the rotating point
       canvas.drawPath(
           Path()
@@ -144,7 +152,6 @@ class DiscStrips extends CustomPainter {
             ..addRect(Rect.fromCenter(
                 center:
                     Offset(freeSquareSideLength / 2, freeSquareSideLength / 2),
-                //   center: Offset(center.width, center.height),
                 width: freeSquareSideLength,
                 height: freeSquareSideLength)),
           Paint()
@@ -228,7 +235,6 @@ void paintText(Canvas canvas, Paint paint, Size size, double left, double right,
           right - 12, smallestDimension / 2 + (parity ? upToText : -upToText)));
 }
 
-
 /// values above and below the horizontal axxis. Does not scale when disc is too small
 void paintTextInSquare(Canvas canvas, Paint paint, double left, double right,
     double xCoord, Color color, double freeSquareSideLength, bool parity) {
@@ -261,6 +267,7 @@ double cosEquivFrom(double x0FromLeft) {
   return 2 * x0FromLeft - 1;
 }
 
+/// extract and convert x values (that are all between -1 and 1) into values between 0 and 1
 List<double> getProportionnalXWithOneFrom(List<DiscSliceResultPart> parts) {
   // final List<DiscSliceResultPart> parts = getDiscSliceResultOf(_counter);
   //  print('_counter: $_counter');

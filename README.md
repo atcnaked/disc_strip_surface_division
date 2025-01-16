@@ -1,16 +1,14 @@
 # disc_strip_surface_division
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+Paint a disc with vertical colored strips starting at some values.  
+Basic example implements strips of equal surface (originally designed to equally split a pizza in strips)
+The disc can be rotated, strip color can be costumized. 
 
-A few resources to get you started if this is your first Flutter project:
+values are increasing double between 0 and 1 and represent the proportion of the width of the disc, 
+colors is determined by looping over the color List.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![alt text](https://github.com/atcnaked/disc_strip_surface_division/blob/99afd677569cd4b9f78e2a818826d7e49f98cfd7/README01c.png)
+![alt text](https://github.com/atcnaked/disc_strip_surface_division/blob/30a7ed2f95bc93f8a94f528d80298fcefa8ca5a4/README02c.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
