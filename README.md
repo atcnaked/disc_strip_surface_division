@@ -3,7 +3,8 @@
 
 
 Paint a disc with vertical colored strips starting at some values.  
-Basic example implements strips of equal surface (originally designed to equally split a pizza in strips).
+Basic example implements strips of equal surface (originally designed to equally split a pizza in strips).  
+
 The disc can be rotated, strip color can be costumized. 
 
 values are increasing double between 0 and 1 and represent the proportion of the width of the disc, 
